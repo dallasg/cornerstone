@@ -1,0 +1,13 @@
+{
+  "name": "cornerstonecrm",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./wwwroot/css/input.css -o ./wwwroot/css/site.css"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.6",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.6"
+  }
+}

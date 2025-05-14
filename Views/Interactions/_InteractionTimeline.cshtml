@@ -1,0 +1,12 @@
+@using CornerstoneCRM.Domain
+@model IEnumerable<Interaction>
+
+<div class="space-y-4">
+    @foreach (var i in Model)
+    {
+        <div class="border p-3 rounded bg-white shadow">
+            <div class="text-sm text-gray-500">@i.Timestamp.ToString("g") - @i.Type</div>
+            <div>@i.Notes</div>
+        </div>
+    }
+</div>

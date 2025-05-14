@@ -1,0 +1,33 @@
+@using CornerstoneCRM.Domain
+@model IEnumerable<Constituent>
+
+<div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-2xl font-semibold mb-4">Constituents</h1>
+
+    <form method="get" class="mb-4">
+        <input type="text" name="query" placeholder="Search by name" class="border rounded px-2 py-1" />
+        <button class="bg-blue-600 text-white px-3 py-1 rounded">Search</button>
+    </form>
+
+    <table class="w-full border-collapse">
+        <thead>
+            <tr>
+                <th class="border-b text-left">Name</th>
+                <th class="border-b">Type</th>
+                <th class="border-b">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td class="border-b">@c.Name</td>
+                <td class="border-b text-center">@c.Type</td>
+                <td class="border-b text-center">
+                    <a asp-action="Details" asp-route-id="@c.Id" class="text-blue-600">View</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

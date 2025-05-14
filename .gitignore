@@ -1,0 +1,6 @@
+bin/
+obj/
+node_modules/
+data/*.db
+.env
+.vscode/settings.json

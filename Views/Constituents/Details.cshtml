@@ -1,0 +1,21 @@
+@using CornerstoneCRM.Domain
+@using CornerstoneCRM.Services
+@model Constituent
+@inject IInteractionService InteractionService
+
+@{
+    var interactions = await InteractionService.GetInteractions(Model.Id, "Case");
+}
+
+<div class="max-w-xl mx-auto p-6">
+    <h1 class="text-3xl font-semibold">@Model.Name</h1>
+    <p class="text-gray-500">@Model.Type</p>
+    <p>Email: @Model.Email</p>
+    <p>Phone: @Model.Phone</p>
+    <p>Address: @Model.Address</p>
+
+    <partial name="_InteractionForm" model="@Model.Id" view-data='new ViewDataDictionary(ViewData) { { "EntityType", "Constituent" } }' />
+    <partial name="_InteractionTimeline" model="interactions" />
+
+    <a asp-action="Index" class="inline-block mt-4 bg-gray-200 text-gray-800 px-4 py-2 rounded">Back</a>
+</div>

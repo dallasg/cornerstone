@@ -1,0 +1,32 @@
+@using CornerstoneCRM.Domain
+@using CornerstoneCRM.Services
+@model Case
+@inject IInteractionService InteractionService
+
+@{
+    var interactions = await InteractionService.GetInteractions(Model.Id, "Case");
+}
+
+<h2 class="text-xl font-semibold mt-6">Interactions</h2>
+
+<div class="max-w-xl mx-auto p-6">
+    <h1 class="text-3xl font-semibold">@Model.Category</h1>
+    <p>Status: @Model.Status</p>
+    <p>@Model.Description</p>
+    <p>Updated: @Model.UpdatedAt.ToString("g")</p>
+
+    <partial name="_InteractionForm" model="@Model.Id" view-data='new ViewDataDictionary(ViewData) { { "EntityType", "Case" } }' />
+    <partial name="_InteractionTimeline" model="interactions" />
+
+    <form method="post" asp-action="AdvanceStatus" asp-route-id="@Model.Id" class="mt-4 space-x-2">
+        <select name="newStatus" class="border rounded px-2 py-1">
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+        </select>
+        <button class="bg-blue-600 text-white px-3 py-1 rounded">Update Status</button>
+    </form>
+
+    <a asp-action="Index" class="inline-block mt-4 bg-gray-200 text-gray-800 px-4 py-2 rounded">Back</a>
+</div>

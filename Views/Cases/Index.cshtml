@@ -1,0 +1,30 @@
+@using CornerstoneCRM.Domain
+@model IEnumerable<Case>
+
+<div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-2xl font-semibold mb-4">Cases</h1>
+
+    <table class="w-full border-collapse">
+        <thead>
+            <tr>
+                <th class="border-b text-left">Category</th>
+                <th class="border-b">Status</th>
+                <th class="border-b">Updated</th>
+                <th class="border-b">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td class="border-b">@c.Category</td>
+                <td class="border-b text-center">@c.Status</td>
+                <td class="border-b text-center">@c.UpdatedAt.ToShortDateString()</td>
+                <td class="border-b text-center">
+                    <a asp-action="Details" asp-route-id="@c.Id" class="text-blue-600">View</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
